@@ -1,5 +1,14 @@
 /** Arcadius version .3001 **/
 
+arc = {
+	init: function(){
+		console.log("Arcadius Init Called.");
+		arc.storage.setItem('array',['foo','bar'],true);
+		console.log(arc.storage.getItem('array',true));
+	},
+	storage: null
+}
+
 // Testing Storage
 
 YUI({
@@ -18,7 +27,7 @@ YUI({
     // the storage-lite:ready event before making storage calls. If you're not
     // targeting those browsers, you can safely ignore this step.
     Y.StorageLite.on('storage-lite:ready', function () {
- 
+ 		
         // To store an item, pass a key and a value (both strings) to setItem().
         Y.StorageLite.setItem('kittens', 'fluffy and cute');
  
@@ -46,8 +55,8 @@ YUI({
         // To remove all items in storage, call clear().
         Y.StorageLite.clear();
  
- 
- 	
+ 		arc.storage = Y.StorageLite;
+ 		arc.init();
 
  
     });
@@ -60,10 +69,6 @@ YUI({
  
 });
 
-arc = {
-	init: function(){
-		console.log("Arcadius Init Called.");
-	}
-}
 
-arc.init();
+
+
